@@ -1,12 +1,17 @@
 package com.GabrielTiziano.CatalogGateway.dto;
 
 import com.GabrielTiziano.CatalogGateway.model.enums.Category;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
+@Builder
 public record ProductResponse(
         String id,
         String name,
