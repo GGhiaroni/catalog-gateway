@@ -5,7 +5,9 @@ import com.GabrielTiziano.CatalogGateway.model.enums.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
     Page<Product> findByCategoryAndActiveTrue(Category category, Pageable pageable);
     Page<Product> findByNameContainingIgnoreCaseAndActiveTrue(String name, Pageable pageable);
