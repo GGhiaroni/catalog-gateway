@@ -16,6 +16,7 @@ public record ProductResponse(
         String id,
         String name,
         String description,
+        String sku,
         Category category,
         BigDecimal price,
         Integer stock,
