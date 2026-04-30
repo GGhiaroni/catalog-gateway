@@ -13,6 +13,10 @@ public record ProductRequest(
         @NotBlank(message = "Descrição é um campo obrigatório")
         @Size(min = 10, message = "A descrição deve ter, no mínimo, 10 caracteres.")
         String description,
+        @NotBlank(message = "SKU é um campo obrigatório.")
+        @Size(min = 4, max = 32, message = "SKU deve ter entre 4 e 32 caracteres.")
+        @Pattern(regexp = "^[A-Z0-9-]+$", message = "SKU deve conter apenas letras maiúsculas, números e hífens.")
+        String sku,
         @NotNull(message = "Categoria é um campo obrigatório.")
         Category category,
         @NotNull(message = "Preço é um campo obrigatório.")
