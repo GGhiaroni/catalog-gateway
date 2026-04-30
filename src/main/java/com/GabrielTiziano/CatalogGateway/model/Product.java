@@ -31,6 +31,9 @@ public class Product {
 
     private String description;
 
+    @Indexed(unique = true)
+    private String sku;
+
     @Indexed
     private Category category;
 
