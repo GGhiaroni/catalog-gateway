@@ -17,4 +17,5 @@ public interface ProductRepository extends MongoRepository<Product, String> {
     Page<Product> findByActiveTrue(Pageable pageable);
     boolean existsBySku(String sku);
     Optional<Product> findBySku(String sku);
+    Optional<Product> findByIdAndActiveTrue(String id);
 }
