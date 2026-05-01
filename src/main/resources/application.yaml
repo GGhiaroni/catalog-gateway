@@ -1,6 +1,8 @@
 spring:
   application:
     name: CatalogGateway
+  profiles:
+    active: dev
 
   data:
     mongodb:
@@ -23,3 +25,10 @@ springdoc:
     path: /swagger-ui.html
   api-docs:
     path: /v3/api-docs
+
+catalog:
+  admin:
+    seed:
+      email: ${ADMIN_SEED_EMAIL}
+      password: ${ADMIN_SEED_PASSWORD}
+      name: ${ADMIN_SEED_NAME}

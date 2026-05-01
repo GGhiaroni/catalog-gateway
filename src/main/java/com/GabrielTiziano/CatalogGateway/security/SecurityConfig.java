@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final SecurityFilter securityFilter;
@@ -35,6 +37,7 @@ public class SecurityConfig {
                                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                                         .requestMatchers(HttpMethod.POST, "/cataloggateway/auth/register").permitAll()
                                         .requestMatchers(HttpMethod.POST, "/cataloggateway/auth/login").permitAll()
+                                        .requestMatchers(HttpMethod.GET, "/cataloggateway/products", "/cataloggateway/products/**").permitAll()
                                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                                         .anyRequest().authenticated())
                         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

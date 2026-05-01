@@ -1,5 +1,6 @@
 package com.GabrielTiziano.CatalogGateway.mapper;
 
+import com.GabrielTiziano.CatalogGateway.dto.AdminUserCreateRequest;
 import com.GabrielTiziano.CatalogGateway.dto.SignupRequest;
 import com.GabrielTiziano.CatalogGateway.dto.UserResponse;
 import com.GabrielTiziano.CatalogGateway.model.User;
@@ -15,6 +16,14 @@ public class UserMapper {
         return User.builder()
                 .name(signupRequest.name())
                 .email(signupRequest.email())
+                .passwordHash(passwordHash)
+                .build();
+    }
+
+    public static User toEntity(AdminUserCreateRequest request, String passwordHash) {
+        return User.builder()
+                .name(request.name())
+                .email(request.email())
                 .passwordHash(passwordHash)
                 .build();
     }

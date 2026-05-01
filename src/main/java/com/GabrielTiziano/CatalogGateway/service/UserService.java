@@ -1,5 +1,6 @@
 package com.GabrielTiziano.CatalogGateway.service;
 
+import com.GabrielTiziano.CatalogGateway.dto.AdminUserCreateRequest;
 import com.GabrielTiziano.CatalogGateway.dto.SignupRequest;
 import com.GabrielTiziano.CatalogGateway.dto.UserResponse;
 import com.GabrielTiziano.CatalogGateway.mapper.UserMapper;
@@ -29,6 +30,19 @@ public class UserService {
 
         User userEntity = UserMapper.toEntity(signupRequest, hashedPassword);
         userEntity.setRoles(Set.of(Role.CUSTOMER));
+
+        return UserMapper.toResponse(userRepository.save(userEntity));
+    }
+
+    public UserResponse createWithRole(AdminUserCreateRequest request) {
+        if (userRepository.existsByEmail(request.email())) {
+            // TODO M3: trocar por EmailAlreadyExistsException
+            throw new RuntimeException("E-mail já cadastrado no banco de dados.");
+        }
+
+        String hashedPassword = passwordEncoder.encode(request.password());
+        User userEntity = UserMapper.toEntity(request, hashedPassword);
+        userEntity.setRoles(request.roles());
 
         return UserMapper.toResponse(userRepository.save(userEntity));
     }
