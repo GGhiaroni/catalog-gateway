@@ -32,3 +32,26 @@ catalog:
       email: ${ADMIN_SEED_EMAIL}
       password: ${ADMIN_SEED_PASSWORD}
       name: ${ADMIN_SEED_NAME}
+
+  rate-limit:
+    enabled: true
+    anonymous:
+      capacity: 30
+      refill-tokens: 30
+      refill-period-seconds: 60
+    auth-endpoints:
+      capacity: 5
+      refill-tokens: 5
+      refill-period-seconds: 60
+    customer:
+      capacity: 60
+      refill-tokens: 60
+      refill-period-seconds: 60
+    manager:
+      capacity: 120
+      refill-tokens: 120
+      refill-period-seconds: 60
+    admin:
+      capacity: 300
+      refill-tokens: 300
+      refill-period-seconds: 60
